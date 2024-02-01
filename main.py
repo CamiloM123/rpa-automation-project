@@ -34,7 +34,7 @@ def main():
     time.sleep(3)
     print(pyautogui.position())  # (x, y) coordinates of the mouse
 
-    image_path = os.path.join(os.path.dirname(__file__), 'origin.png')
+    image_path = os.path.join(os.path.dirname(__file__), 'images/origin.png')
     position = find_image(image_path)
 
     if position is not None:
