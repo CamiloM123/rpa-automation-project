@@ -27,7 +27,7 @@ def find_image(image_path):
     - tuple or None: The position of the top-left and bottom-right corners of the image if found,
     or None if not found.
     """
-    position = pyautogui.locateOnScreen(image_path)
+    position = pyautogui.locateOnScreen(image_path, confidence=0.95)
     return position
 
 def main():
