@@ -1,41 +1,42 @@
-def clasificar_color(color: any) -> str:
+def classify_color(color: tuple) -> str:
     """
-    Clasifica un color dado en una de las categorías predefinidas.
+    Classify a given color into one of the predefined categories.
 
     Parameters:
-    - color (tuple): Una tupla que representa el color en formato RGB.
+    - color (tuple): A tuple representing the color in RGB format.
 
     Returns:
-    - str: La categoría a la que pertenece el color ('morado', 'verde', 'rojo', 'azul', 'magenta', 'negro' o 'No clasificado').
+    - str: The category to which the color belongs ('purple', 'green', 'red', 'blue', 'magenta', 'black', or 'Unclassified').
 
     Example:
-    >>> color_ejemplo = (127, 0, 255)
-    >>> categoria = clasificar_color(color_ejemplo)
-    >>> print(f"El color se clasifica como: {categoria}")
-    El color se clasifica como: morado
+    >>> example_color = (127, 0, 255)
+    >>> category = classify_color(example_color)
+    >>> print(f"The color is classified as: {category}")
+    The color is classified as: purple
     """
     R, G, B = color
 
-    # Definir un diccionario con los tonos de colores
-    diccionario = {
-        'morado': {(127, 0, 255), (127, 102, 204), (191, 127, 255), (76, 0, 153), (153, 0, 153)},
-        'verde': {(0, 255, 0), (51, 204, 0), (38, 153, 0), (0, 127, 0), (38, 76, 38)},
-        'rojo': {(255, 0, 0), (204, 0, 0), (153, 0, 0), (204, 51, 0), (255, 127, 127)},
-        'azul': {(0, 0, 255)},
+    # Define a dictionary with color tones
+    color_dictionary = {
+        'purple': {(127, 0, 255), (127, 102, 204), (191, 127, 255), (76, 0, 153), (153, 0, 153)},
+        'green': {(0, 255, 0), (51, 204, 0), (38, 153, 0), (0, 127, 0), (38, 76, 38)},
+        'red': {(255, 0, 0), (204, 0, 0), (153, 0, 0), (204, 51, 0), (255, 127, 127)},
+        'blue': {(0, 0, 255)},
         'magenta': {(255, 0, 255)},
-        'negro': {(0, 0, 0)}
+        'black': {(0, 0, 0)}
     }
 
-    # Buscar el color en el diccionario
-    for categoria, colores in diccionario.items():
-        if color in colores:
-            return categoria
+    # Search for the color in the dictionary
+    for category, colors in color_dictionary.items():
+        if color in colors:
+            return category
 
-    # Si no se encuentra en ninguna categoría
-    return "No clasificado"
+    # If not found in any category
+    return "Unclassified"
 
-# Ejemplo de uso
-color_ejemplo = (127, 0, 255)
-categoria = clasificar_color(color_ejemplo)
-print(f"El color se clasifica como: {categoria}")
+# Example of usage
+example_color = (127, 0, 255)
+category = classify_color(example_color)
+print(f"The color is classified as: {category}")
+
 
