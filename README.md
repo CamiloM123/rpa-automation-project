@@ -1,23 +1,23 @@
-# Automatización con PyAutoGui
+# Automation Project with PyAutoGui
 
-Este proyecto se centra en la automatización de tareas mediante el uso de PyAutoGui, una biblioteca de Python diseñada para interactuar con la interfaz gráfica de usuario (GUI). Los scripts proporcionados incluyen funcionalidades como la búsqueda de imágenes en la pantalla y la clasificación de colores en regiones específicas.
+This project leverages PyAutoGui to automate tasks within the graphical user interface (GUI). The scripts included perform actions such as locating an image on the screen and categorizing colors in a specific region.
 
-## Requisitos
+## Requirements
 
-Antes de ejecutar los scripts, asegúrate de tener Python instalado en tu entorno. Además, instala las bibliotecas necesarias ejecutando el siguiente comando en tu terminal:
+Before running the scripts, ensure you have Python installed in your environment. Additionally, install the necessary libraries by executing the following command in your terminal:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
-- **main_script.py**: Este script es el punto de entrada principal para iniciar la automatización.
-  
-- **colors.py**: Módulo que contiene funciones esenciales para la clasificación de colores en el proyecto.
+- **main_script.py**: This script serves as the primary entry point for initiating the automation.
 
-- **images/**: Carpeta que almacena imágenes utilizadas durante la automatización.
+- **colors.py**: Module containing essential functions for color classification in the project.
 
-- **requirements.txt**: Archivo que detalla las dependencias del proyecto. Puedes instalarlas usando el comando mencionado anteriormente.
+- **images/**: Folder storing images used during the automation.
 
-Asegúrate de seguir estos pasos para tener un entorno preparado antes de ejecutar cualquier script en el proyecto. Este enfoque facilita la gestión de dependencias y garantiza un funcionamiento suave de la automatización.
+- **requirements.txt**: File outlining project dependencies. You can install them using the aforementioned command.
+
+Make sure to follow these steps to have a prepared environment before running any scripts in the project. This approach streamlines dependency management and ensures smooth automation execution.
