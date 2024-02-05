@@ -1,3 +1,5 @@
+"""Laser Machine Automation Script"""
+
 import pyautogui
 import time
 import os
