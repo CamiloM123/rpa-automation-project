@@ -1,6 +1,7 @@
 import pyautogui
 import time
 import os
+
 from colors import classify_color
 
 def get_color(x, y):
@@ -14,54 +15,59 @@ def get_color(x, y):
     Returns:
     - tuple: A tuple representing the color in RGB format.
     """
+    x, y = int(x), int(y)
     return pyautogui.pixel(x, y)
 
 def find_image(image_path):
-    """
-    Search for an image on the screen and return its position if found.
+    try:
+        position = pyautogui.locateOnScreen(image_path)
+        # print(f"Image found at {position}")
+        return position
+    except:
+        print("The image was not found on the screen.")
+        return None
+    
+def color_process(color, pointer_x, pointer_y, i):
+    color_name = classify_color(color)
+    print(f"Color {i}: {color} -> {color_name}")
+    pyautogui.moveTo(pointer_x, pointer_y)  # move the mouse to (x, y) coordinates
+    return color_name
 
-    Parameters:
-    - image_path (str): The path of the image to search for.
-
-    Returns:
-    - tuple or None: The position of the top-left and bottom-right corners of the image if found,
-    or None if not found.
-    """
-    position = pyautogui.locateOnScreen(image_path, confidence=0.95)
-    return position
+def check_proccess():
+    image_path = os.path.join(os.path.dirname(__file__), 'images/check-1.png')
+    check_position = find_image(image_path)
+    
+    if check_position is not None:
+        pointer_x, pointer_y = pyautogui.center(check_position)
+        pyautogui.moveTo(pointer_x, pointer_y)
 
 def main():
     time.sleep(3)
     print(pyautogui.position())  # (x, y) coordinates of the mouse
 
-    image_path = os.path.join(os.path.dirname(__file__), 'images/origin.png')
-    position = find_image(image_path)
-
-    if position is not None:
-        # Print the coordinates of the top-left and bottom-right corners
-        print(f"The image was found at the position: {position}")
-    else:
-        print("The image was not found on the screen.")
-
-    pointer_x, pointer_y = pyautogui.center(position)
-    pointer_y += 40
-    i = 1
-
-    while True:
-        color = get_color(pointer_x, pointer_y)
-        if color == (255, 255, 255):
-            print("White color found.")
-            break
-        else:
-            color_name = classify_color(color)
-            print(f"Color {i}: {color} -> {color_name}")
-            pyautogui.moveTo(pointer_x, pointer_y)  # move the mouse to (x, y) coordinates
-            i += 1
-            if i != 10:
-                pointer_y += 20
+    image_path = os.path.join(os.path.dirname(__file__), 'images/origin-2.png')
+    origin_position = find_image(image_path)    
+    
+    if origin_position is not None:
+        pointer_x, pointer_y = pyautogui.center(origin_position)
+        # pointer_y += 25
+        pointer_y += 40
+        i = 1
+        while True:
+            color = get_color(pointer_x, pointer_y)
+            if color == (255, 255, 255):
+                print("White color found.")
+                break
             else:
-                pointer_y += 15
-        time.sleep(0.5)
+                color_name = color_process(color, pointer_x, pointer_y, i)
+                time.sleep(1)
+                check_proccess()
+                if color_name != "green":
+                    pointer_y += 17
+                else: 
+                    pointer_y += 22
+                i += 1
+            time.sleep(1)
 
 if __name__ == "__main__":
     main()
