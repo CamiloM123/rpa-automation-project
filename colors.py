@@ -2,8 +2,9 @@
 Module: colors.py
 Author: Juan Camilo Muñoz Valencia
 
-This module contains the function to classify a color into one of the predefined categories.
+This module contains a function to classify a color into one of the predefined categories.
 """
+
 
 def classify_color(color: tuple) -> str:
     """
@@ -15,7 +16,7 @@ def classify_color(color: tuple) -> str:
     Returns:
     - str: The category to which the color belongs ('purple', 'green', 'red', 'blue', 'magenta', 'black', or 'Unclassified').
     """
-    
+
     R, G, B = color
 
     # Define a dictionary with color tones
@@ -35,12 +36,3 @@ def classify_color(color: tuple) -> str:
 
     # If not found in any category
     return "Unclassified"
-
-
-
-# Example of usage
-example_color = (127, 0, 255)
-category = classify_color(example_color)
-print(f"The color is classified as: {category}")
-
-
