@@ -7,9 +7,25 @@ This module contains the functions for the RPA (Robotic Process Automation) proj
 
 import pyautogui
 import os
+import sys
 import time
 from colors import classify_color
 
+def resourse_path(relative_path):
+    """
+    Get the resource path.
+
+    Args:
+        relative_path (str): The relative path.
+    
+    Returns:
+        str: The resource path.
+    """
+    try:
+        base_path = sys._MEIPASS
+    except:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 def get_color(x: int, y: int) -> tuple:
     """
@@ -95,6 +111,8 @@ def move_to_center(image_path: str) -> tuple or None:
         pointer_x, pointer_y = pyautogui.center(position)
         pyautogui.moveTo(pointer_x, pointer_y)
         return pointer_x, pointer_y
+    else:
+        return 0,0
 
 
 def color_params(color_name: str):
@@ -122,23 +140,15 @@ def color_params(color_name: str):
 
     for key, value in dict_color.items():
         if key == color_name:
-            image_params_path = value
-            image_path = os.path.join(
-                os.path.dirname(__file__), image_params_path)
-            position = find_image(image_path)
-            if position is not None:
-                pointer_x, pointer_y = pyautogui.center(position)
-                pyautogui.moveTo(pointer_x, pointer_y)
-                # pyautogui.click() # Uncomment to click on the image
-                time.sleep(3)  # Adjust sleep time as needed
-                image_path = os.path.join(os.path.dirname(
-                    __file__), "images/param-load.png")
-                load_position = find_image(image_path)
-                if load_position is not None:
-                    pointer_x, pointer_y = pyautogui.center(load_position)
-                    pyautogui.moveTo(pointer_x, pointer_y)
-                    # pyautogui.click() # Uncomment to click on the image
-                break
+            path = resourse_path(value)
+            pointer_x, pointer_y = move_to_center(path)
+            pyautogui.click(pointer_x, pointer_y) 
+            time.sleep(3)  # Adjust sleep time as needed
+            load_path = resourse_path('param-load.PNG')
+            pointer_x, pointer_y = move_to_center(load_path)
+            pyautogui.click(pointer_x, pointer_y)
+            # pyautogui.click() # Uncomment to click on the image
+        break
 
 
 def delete_and_write(value: str) -> None:
