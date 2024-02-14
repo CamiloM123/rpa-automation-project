@@ -45,7 +45,7 @@ def get_color(x: int, y: int) -> tuple:
     return pyautogui.pixel(x, y)
 
 
-def find_image(image_path: str) -> tuple or None:
+def find_image(image_path: str) -> tuple:
     """
     Find the specified image on the screen.
 
@@ -92,7 +92,7 @@ def color_process(color: tuple, pointer_x: int, pointer_y: int, i: int) -> str:
     return color_name
 
 
-def move_to_center(image_path: str) -> tuple or None:
+def move_to_center(image_path: str) -> tuple:
     """
     Move the mouse to the center of the specified image.
 
